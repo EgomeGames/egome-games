@@ -9,11 +9,12 @@
         const fallbackLink = "https://store.steampowered.com/app/2749690";
 
         // Attempt to open the Steam client link
-        window.location.href = steamLink;
-
+        // window.location.href = steamLink;
+        window.location.href = fallbackLink;
+        
         // Fallback to browser link after a short delay
         setTimeout(() => {
-            window.location.href = fallbackLink;
+            window.location.href = steamLink;    
         }, 500);
     </script>
 </head>
