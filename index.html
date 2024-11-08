@@ -5,6 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirecting...</title>
     <script>
+        (function() {
+            const steamLink = "steam://store/2749690";
+            const fallbackLink = "https://store.steampowered.com/app/2749690/?utm_source=github&utm_medium=cpc&utm_campaign=launch";
+
+            // Attempt to open Steam client link
+            let steamOpened = false;
+            try {
+                window.location.href = steamLink;
+                steamOpened = true;
+            } catch (e) {
+                steamOpened = false;
+            }
+
+            // Fallback to browser link after a delay, only if Steam client doesn't open
+            setTimeout(() => {
+                if (!steamOpened) {
+                    window.location.href = fallbackLink;
+                }
+            }, 1000);
+        })();
+
+        /*
         const steamLink = "steam://store/2749690";
         const fallbackLink = "https://store.steampowered.com/app/2749690/?utm_source=github&utm_medium=cpc&utm_campaign=launch";
 
@@ -15,6 +37,7 @@
         setTimeout(() => {
             window.location.href = fallbackLink;
         }, 500);
+        */
     </script>
 </head>
 <body>
