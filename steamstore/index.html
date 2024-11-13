@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+</head>
+<body>
+    <p>Redirecting you to Steam...</p>
+    <a id="steamLink" href="steam://store/2749690" style="display: none;">Open in Steam</a>
+
+    <script>
+        // Steam client link
+        const steamLinkElement = document.getElementById("steamLink");
+        const steamClientLink = "steam://store/2749690";
+        const fallbackBaseLink = "https://store.steampowered.com/app/2749690";
+
+        // Function to get URL parameters (e.g., UTM parameters)
+        function getUrlParams() {
+            const params = new URLSearchParams(window.location.search);
+            return params.toString();
+        }
+
+        // Construct the fallback link with UTM parameters
+        const urlParams = getUrlParams();
+        const fallbackLink = urlParams ? `${fallbackBaseLink}?${urlParams}` : fallbackBaseLink;
+
+        // Attempt to open the Steam client link by simulating a user click
+        steamLinkElement.href = steamClientLink;
+        steamLinkElement.click();
+
+        // Fallback to browser link after a short delay if the user cancels the Steam client prompt
+        setTimeout(() => {
+            window.location.href = fallbackLink;
+        }, 6000);
+    </script>
+</body>
+</html>
