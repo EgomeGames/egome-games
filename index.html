@@ -3,24 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecting to Steam...</title>
-    <script>
-        const steamLink = "steam://store/2749690";
-        const fallbackLink = "https://store.steampowered.com/app/2749690";
-
-        // Open the Steam client link in a new tab
-        const newWindow = window.open(steamLink, "_self");
-
-        // Fallback to browser link after a short delay (e.g., 1 second)
-        setTimeout(() => {
-            if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
-                // User declined or the Steam client did not open, so redirect to the fallback link
-                window.location.href = fallbackLink;
-            }
-        }, 1000);
-    </script>
+    <title>Redirecting...</title>
 </head>
 <body>
     <p>Redirecting you to Steam...</p>
+    <a id="steamLink" href="steam://store/2749690" style="display: none;">Open in Steam</a>
+
+    <script>
+        const steamLinkElement = document.getElementById("steamLink");
+        const fallbackLink = "https://store.steampowered.com/app/2749690";
+
+        // Attempt to open the Steam client link by simulating a user click
+        steamLinkElement.click();
+
+        // Fallback to browser link after a short delay if the user cancels the Steam client prompt
+        setTimeout(() => {
+            window.location.href = fallbackLink;
+        }, 1500);
+    </script>
 </body>
 </html>
